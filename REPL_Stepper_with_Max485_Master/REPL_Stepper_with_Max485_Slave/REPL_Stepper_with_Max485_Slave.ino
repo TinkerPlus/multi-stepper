@@ -1,3 +1,22 @@
+/*
+ * 作用：在master中输入一个数值作为圈数，比如123，Slave转动该圈数。
+ * 
+ * 安装：使用了第三方库 StepperDriver，可以在"库管理器"中下载，也可以在
+ * https://github.com/laurb9/StepperDriver 查看相关信息
+ * 
+ * 硬件：
+ * - Max485模块接线
+ * 需要两块便宜版本的Max485模块，接线图参考
+ * https://www.arduino.cn/thread-47862-1-1.html
+ * 根据这篇文章，采用了相同的软件串口代替硬件串口的方式，方便程序调试。
+ * 在此基础上直接将主机的DE、RE两个引脚接高电平，表示只发不收；
+ * 从机的DE、RE两个引脚接低电平，表示只接收不发送。
+ * 
+ * - A4988模块接线
+ * 主要参考这篇文章https://howtomechatronics.com/tutorials/arduino/how-to-control-stepper-motor-with-a4988-driver-and-arduino/
+ * 程序部分使用StepperDriver的例程BasicStepperDriver
+ */
+
 #include <Arduino.h>
 #include "BasicStepperDriver.h"
 #include <SoftwareSerial.h>
@@ -20,12 +39,7 @@
 // 2-wire basic config, microstepping is hardwired on the driver
 BasicStepperDriver stepper(MOTOR_STEPS, DIR, STEP);
 
-//Uncomment line to use enable/disable functionality
-//BasicStepperDriver stepper(MOTOR_STEPS, DIR, STEP, SLEEP);
-
-
 String msgString = "";
-String msgChar = "";
 
 SoftwareSerial Slave(10, 11); // RX, TX
 void setup() {
@@ -37,8 +51,7 @@ void setup() {
 
 void loop() {   
     if (Slave.available()) {
-      //msgChar = mySerial.read();
-      msgString = Slave.readString();  //有待测试readString 
+      msgString = Slave.readString(); 
       Serial.println(msgString.toInt()*100);
       stepper.rotate(360 * msgString.toInt());
     }
