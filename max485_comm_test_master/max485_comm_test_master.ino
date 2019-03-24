@@ -1,6 +1,7 @@
 #include <SoftwareSerial.h>
 SoftwareSerial Master(10, 11); //RX, TX ; 10--RO,11--DI
 char message = '1'; 
+String msgString = "";
 int DE_RE=2;
  
 void setup() {
@@ -13,8 +14,16 @@ void setup() {
 }
  
 void loop() { 
-  if (Slave.available()){
-    val = Slave.read();
-    Serial.write(val);
- }
+  //val = '1';
+  //Master.write(val);
+  while (Serial.available()){
+    //message = Serial.read();
+    msgString = Serial.readString();
+    //Serial.print("Send: ");
+    //Serial.println(message);
+    //Serial.println(msgString);
+    //Master.write(message);
+    Master.print(msgString);
+  }
+  //delay(50);
 }
