@@ -37,38 +37,17 @@ String inString = "";
 
 
 void setup() {
-    //stepper.rotate(360*int(inByte));
-    Serial.begin(115200);
+    Serial.begin(38400);
     Serial.println("Ready!");
     stepper.begin(RPM, MICROSTEPS);
-    // if using enable/disable on ENABLE pin (active LOW) instead of SLEEP uncomment next line
-    // stepper.setEnableActiveState(LOW);
 }
 
 void loop() {
-  
-    // energize coils - the motor will hold position
-    // stepper.enable();
-  
-    /*
-     * Moving motor one full revolution using the degree notation
-     */
     if (Serial.available() > 0) {
       inString = Serial.readString();
       Serial.print("receive: ");
       Serial.println(inString);
       stepper.rotate(360 * inString.toInt());
     }
-    
-    
-
-    /*
-     * Moving motor to original position using steps
-     */
-    //stepper.move(-MOTOR_STEPS*MICROSTEPS);
-
-    // pause and allow the motor to be moved by hand
-    // stepper.disable();
-
     delay(50);
 }
