@@ -1,9 +1,9 @@
 -I/Users/can/.platformio/packages/framework-arduinoavr/cores/arduino
 -I/Users/can/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs
--I/Users/can/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src
 -I/Users/can/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src
 -I/Users/can/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src
 -I/Users/can/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src
+-I/Users/can/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src
 -I/Users/can/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src
 -I/Users/can/.platformio/packages/toolchain-atmelavr/avr/include
 -I/Users/can/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include
