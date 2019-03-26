@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include <SoftwareSerial.h>
 SoftwareSerial Master(10, 11); //RX, TX ; 10--RO,11--DI
 char message = '1';
