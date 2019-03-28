@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <SoftwareSerial.h>
 SoftwareSerial Master(10, 11); //RX, TX ; 10--RO,11--DI
 char message = '1';
@@ -19,9 +20,8 @@ void loop() {
   while (Serial.available()){
     //message = Serial.read();
     msgString = Serial.readString();
-    //Serial.print("Send: ");
-    //Serial.println(message);
-    //Serial.println(msgString);
+    Serial.print("Send: ");
+    Serial.println(msgString);
     //Master.write(message);
     Master.print(msgString);
   }
